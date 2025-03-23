@@ -9,6 +9,10 @@ function Home() {
   const [editandoPost, setEditandoPost] = useState(null);
   const [novoTitulo, setNovoTitulo] = useState("");
   const [novoConteudo, setNovoConteudo] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const savedAmount = localStorage.getItem("mensagensPorPagina");
+  const postsPerPage = savedAmount ? Number(savedAmount) : 20;
+
 
   useEffect(() => {
     axios
@@ -50,12 +54,17 @@ function Home() {
       .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then((response) => {
         console.log("Requisição DELETE enviada!");
-        console.log("Status:", response.status); 
-        console.log("Resposta do servidor:", response.data); 
+        console.log("Status:", response.status);
+        console.log("Resposta do servidor:", response.data);
         setPosts(posts.filter((p) => p.id !== id));
       })
       .catch((error) => console.error("Erro ao deletar post:", error));
   };
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(posts.length / postsPerPage);
 
   return (
     <div className="container">
@@ -70,7 +79,7 @@ function Home() {
           </tr>
         </thead>
         <tbody>
-          {posts.map((post) => (
+          {currentPosts.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>
@@ -115,6 +124,17 @@ function Home() {
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+          <button
+            key={num}
+            onClick={() => setCurrentPage(num)}
+            className={currentPage === num ? "active" : ""}
+          >
+            {num}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

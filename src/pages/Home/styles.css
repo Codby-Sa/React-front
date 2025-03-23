@@ -127,3 +127,23 @@ td:last-child, th:last-child {
 .delete-btn img {
   filter: invert(36%) sepia(57%) saturate(747%) hue-rotate(319deg) brightness(95%) contrast(85%);
 }
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button.active {
+  background-color: #6ab49c;
+  color: white;
+}

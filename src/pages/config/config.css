@@ -1,0 +1,45 @@
+.config-container {
+    padding: 30px;
+    max-width: 500px;
+    margin: 40px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: white;
+  }
+  
+  .config-container.escuro {
+    background-color: #333;
+    color: white;
+  }
+  
+  .config-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .config-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .config-item label {
+    font-weight: bold;
+  }
+  
+  select {
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #6ab49c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
